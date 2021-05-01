@@ -22,22 +22,22 @@ public class WhenDo {
     public void initializeAppium() throws MalformedURLException {
 
         // Juan de Dios
-        /*
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","nubia Z17 lite");
         capabilities.setCapability("platformVersion","7.1.1");
         capabilities.setCapability("appPackage","com.vrproductiveapps.whendo");
         capabilities.setCapability("appActivity",".ui.HomeActivity");
         capabilities.setCapability("platformName","Android");
-        */
+
 
         // Humberto Guadalupe
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        /*DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","Android SDK built for x86");
         capabilities.setCapability("platformVersion","8.1.0");
         capabilities.setCapability("appPackage","com.vrproductiveapps.whendo");
         capabilities.setCapability("appActivity",".ui.HomeActivity");
-        capabilities.setCapability("platformName","Android");
+        capabilities.setCapability("platformName","Android");*/
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
 
@@ -127,7 +127,7 @@ public class WhenDo {
         driver.findElement(By.id("com.vrproductiveapps.whendo:id/home_header_icon")).click();
 
         // click en Orden Alfabetico
-        driver.findElement(By.xpath("//android.widget.CheckedTextView[@text='Alphabetic']")).click();
+        driver.findElement(By.xpath("//android.widget.CheckedTextView[@text='Alfabéticamente']")).click();
 
         // Esperando a se vizualiza
         Thread.sleep(3000);
@@ -141,8 +141,11 @@ public class WhenDo {
         //Ingresar Tarea
         driver.findElement(By.id("com.vrproductiveapps.whendo:id/noteTextTitle")).sendKeys(tarea);
 
+        // click Guardar
+       // driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Save']")).click();
+
         //Ingresar Notes
-        driver.findElement(By.xpath("//android.widget.EditText[@text='Notes']")).sendKeys(notes);
+        driver.findElement(By.xpath("//android.widget.EditText[@text='Notas']")).sendKeys(notes);
 
         // click Guardar
         driver.findElement(By.id("com.vrproductiveapps.whendo:id/saveItem")).click();
