@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -30,8 +29,7 @@ public class WhenDo {
         capabilities.setCapability("appActivity",".ui.HomeActivity");
         capabilities.setCapability("platformName","Android");
 
-
-        // Humberto Guadalupe
+       // Humberto Guadalupe
         /*DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","Android SDK built for x86");
         capabilities.setCapability("platformVersion","8.1.0");
@@ -76,10 +74,10 @@ public class WhenDo {
         driver.findElement(By.xpath("//android.widget.EditText[@text='Title']")).sendKeys(titulo);
 
         //Ingresar Notes
-        driver.findElement(By.xpath("//android.widget.EditText[@text='Notes']")).sendKeys(notes);
+        driver.findElement(By.xpath("//android.widget.EditText[@text='Notas']")).sendKeys(notes);
 
         // click Guardar
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Save']")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Guardar\"]")).click();
 
         // verificacion, verificar que la tarea este creada
         Thread.sleep(2000);
