@@ -2,26 +2,54 @@ plugins {
     id 'java'
 }
 
-group 'com.Clase02'
-version '1.0'
+group 'jb_movile_abril'
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    implementation group: 'junit', name: 'junit', version: '4.12'
-    //Appium
-    // https://mvnrepository.com/artifact/io.appium/java-client
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    //APPIUM
     implementation group: 'io.appium', name: 'java-client', version: '7.5.1'
-    //Selenium
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
+    //CUCUMBER
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.3'
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '6.10.3'
+
+    //REPORTE CUCUMBER
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.5.3'
 
 }
 
-test {
-    useJUnitPlatform()
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+// ejecutar todos los test gradle cucumber
+// gradle cucumber -Ptestsuite=@Calculadora
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'html:build/reports/cucumber/cucumber.html', '--glue', 'runner', 'src/test/resources','--tags']+[testsuite]
+        }
+    }
+}
+
+task cucumberAll() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'runner', 'src/test/resources']
+        }
+    }
 }
