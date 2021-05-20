@@ -14,11 +14,14 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class MyStepWhenDo {
+
     @Given("yo tengo abierto el WhenDo")
     public void yoTengoAbiertoElWhenDo() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","nubia Z17 lite");
-        capabilities.setCapability("platformVersion","7.1.1");
+        //capabilities.setCapability("deviceName","nubia Z17 lite");
+        //capabilities.setCapability("platformVersion","7.1.1");
+        capabilities.setCapability("deviceName","IA Emulador");
+        capabilities.setCapability("platformVersion","9");
         capabilities.setCapability("appPackage","com.vrproductiveapps.whendo");
         capabilities.setCapability("appActivity",".ui.HomeActivity");
         capabilities.setCapability("platformName","Android");
@@ -40,7 +43,7 @@ public class MyStepWhenDo {
 
     @And("yo escribo en el campo Notas el valor de {string}")
     public void yoEscriboEnElCampoNotasElValorDe(String notas) {
-        Runner.driver.findElement(By.xpath("//android.widget.EditText[@text='Notas']")).sendKeys(notas);
+        Runner.driver.findElement(By.xpath("//android.widget.EditText[@text='Notes']")).sendKeys(notas);
     }
 
     @And("yo realizo click en el boton Guardar")
@@ -53,4 +56,6 @@ public class MyStepWhenDo {
         Thread.sleep(2000);
         Assert.assertTrue("ERROR! tarea no creada",Runner.driver.findElement(By.xpath("//android.widget.TextView[@text='"+titulo+"']")).isDisplayed());
     }
+
+
 }
